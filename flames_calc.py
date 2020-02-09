@@ -1,3 +1,4 @@
+import sys
 print('''This is the FLAMES calculator.\nFLAMES stands for - Friends, Lover, Affection, Marriage, Enemy, Sister\n
 Take FLAMES test with love calculator online to know what kind of relationship you will fall with the other person.\n 
 Do not take the results of flames game too seriously. It is just for fun.''')
@@ -19,8 +20,16 @@ def magic_2(givenlist):
     return givenlist
 
 
+numsplchar = list('1234567890!@#$%^&*()-=_+~`,./""\'')
+
 name_1 = list(input("First Name of Player 1 :  ").lower())
 name_2 = list(input("First Name of Player 2 :  ").lower())
+
+for i in numsplchar:
+    if i in name_1 or i in name_2:
+        print("Invaid")
+        sys.exit()
+        break
 
 x_name, y_name, count = magic_2(name_1), magic_2(name_2), 0
 for char in x_name:

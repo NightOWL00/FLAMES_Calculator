@@ -12,6 +12,7 @@ flames_dict = {'f': 'Friend', 'l': 'love', 'a': 'affection',
 
 
 def calculate():
+
     def magic(a, char):
         a = ''.join(a)
         b = a.split(char)
@@ -26,18 +27,34 @@ def calculate():
 
     name_1 = list(tb1.get().lower())
     name_2 = list(tb2.get().lower())
+    numsplchar = list('1234567890!@#$%^&*()-=_+~`,./""\'')
+    
+    flag = False
+    
+    if len(name_1) == 0:
+        flag=True
+    if len(name_2) == 0:
+        flag=True
+    
+    for i in numsplchar:
+        if i in name_1 or i in name_2:
+            flag = True
+            break
 
-    x_name, y_name, count = magic_2(name_1), magic_2(name_2), 0
-    for char in x_name:
-        if char in y_name:
-            count += 1
-            y_name.remove(char)
-    effective_length = len(name_1 + name_2) - count
-    flames = ['F', 'L', 'A', 'M', 'E', 'S']
-    for i in range(len(flames)-1):
-        flames = magic(flames, flames[(effective_length % len(flames))-1])
-    print('Relation : ', flames_dict[flames[0].lower()].upper())
-    lb3['text'] = flames_dict[flames[0].lower()].upper()
+    if flag == True:
+        lb3['text'] = "Invaid"
+    else:
+        x_name, y_name, count = magic_2(name_1), magic_2(name_2), 0
+        for char in x_name:
+            if char in y_name:
+                count += 1
+                y_name.remove(char)
+        effective_length = len(name_1 + name_2) - count
+        flames = ['F', 'L', 'A', 'M', 'E', 'S']
+        for i in range(len(flames)-1):
+            flames = magic(flames, flames[(effective_length % len(flames))-1])
+        print('Relation : ', flames_dict[flames[0].lower()].upper())
+        lb3['text'] = flames_dict[flames[0].lower()].upper()
 
 
 def reset():
