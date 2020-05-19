@@ -41,3 +41,4 @@ flames = ['F', 'L', 'A', 'M', 'E', 'S']
 for i in range(len(flames)-1):
     flames = magic(flames, flames[(effective_length % len(flames))-1])
 print('Relation : ', flames_dict[flames[0].lower()].upper())
+input("Press Enter to EXIT program")
